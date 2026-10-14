@@ -10,6 +10,14 @@ If you have Rust installed:
 cargo install --locked spotatui
 ```
 
+This builds the Spotify-only default without album art. To add Local Files, Subsonic, Internet Radio, YouTube, Qobuz and album art:
+
+```bash
+cargo install --locked spotatui --features all-sources,cover-art
+```
+
+The pre-built binaries below already include these sources and album art.
+
 ### Windows (winget)
 
 ```bash
@@ -58,6 +66,10 @@ paru -S spotatui
 ---
 
 ## Platform-Specific Requirements
+
+### YouTube source
+
+The YouTube source requires the [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) binary on your `PATH`, with `ffmpeg` recommended. If playback breaks after a YouTube change, update `yt-dlp` with `yt-dlp -U`.
 
 ### Linux
 
@@ -121,12 +133,16 @@ cd spotatui
 
 **macOS:**
 ```bash
-cargo install --path . --no-default-features --features telemetry,streaming,discord-rpc,cover-art,self-update,scripting,portaudio-backend,audio-viz-cpal,macos-media,local-files,subsonic,internet-radio,youtube,qobuz,apple-music
+cargo install --path . --no-default-features --features telemetry,tui,streaming,discord-rpc,cover-art,self-update,scripting,mcp-server,ai-dj,portaudio-backend,audio-viz-cpal,macos-media,all-sources,apple-music
 ```
 
 **Linux/Windows:**
+
+The plain command builds Spotify-only without album art; the second adds all sources and album art.
+
 ```bash
 cargo install --path .
+cargo install --path . --features all-sources,cover-art
 ```
 
 **Nix:**
